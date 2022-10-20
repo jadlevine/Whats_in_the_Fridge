@@ -43,6 +43,8 @@ The project was deployed on Heroku, and can be found [here]()
 - [ ] Expiration Date warnings
 - [ ] Zones in stoarge location (e.g., second shelf on the refrigerator door)
 - [ ] Recipe suggestions based on available ingredients
+- [ ] Add new storage locations
+- [ ] Add new houses
 
 ---
 
