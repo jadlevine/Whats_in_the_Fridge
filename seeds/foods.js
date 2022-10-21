@@ -8,23 +8,23 @@ const main = async () => {
   // const michaelsHouse = await House.find({owner:'michael'})
   console.log(joshsHouse[0].storages[0]._id)
 
-  const foods = [
-    {
-      name: 'cucumbers',
-      storageLocation_id: joshsHouse[0].storages[0]._id
-    },
-    {
-      name: 'ketchup',
-      storageLocation_id: joshsHouse[0].storages[0]._id
-    }
-  ]
-  await Food.insertMany(foods)
-  console.log('created foods from seed')
-}
+//   const foods = [
+//     {
+//       name: 'cucumbers',
+//       storageLocation_id: joshsHouse[0].storages[0]._id
+//     },
+//     {
+//       name: 'ketchup',
+//       storageLocation_id: joshsHouse[0].storages[0]._id
+//     }
+//   ]
+//   await Food.insertMany(foods)
+//   console.log('created foods from seed')
+// }
 
-const run = async () => {
-  await main()
-  db.close()
-}
+// const run = async () => {
+//   await main()
+//   db.close()
+// }
 
-run()
+// run()
