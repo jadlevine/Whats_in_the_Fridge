@@ -11,17 +11,17 @@ const main = async () => {
         {
           storageType: 'fridge',
           location: 'kitchen',
-          foods: ['pickles', 'lettuce']
+          foods: []
         },
         {
           storageType: 'freezer',
           location: 'kitchen',
-          foods: ['popsickles', 'ice']
+          foods: []
         },
         {
           storageType: 'pantry',
           location: 'kitchen',
-          foods: ['syrup', 'oatmeal']
+          foods: []
         }
       ] //end of josh's storages array
     }, //end of josh's house
