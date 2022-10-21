@@ -6,8 +6,21 @@ const { Schema } = require('mongoose') ///destructuring allows us to "pluck out 
 
 //Schemas are a lot like classes
 //Food is being generated from the Schema class that we have access to from mongoose
-const Food = new Schema()
-//two arguments passed in here
-///1. all the fields we want for our record/document
-///2. timestamps, true/false
-//54.12 on tuesday
+const Food = new Schema(
+  //two arguments passed in here - 54.12 on tuesday
+  ///1. all the fields we want for our record/document
+  {
+    name: { type: String, required: true },
+    expirationDate: { type: Date, required: true }
+    // addedDate: { type: Date, default: Date.now, required: true },
+    // storageLocation: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'house_id',
+    //   required: true
+    // } //this reference might need work!
+  },
+  ///2. timestamps, true/false
+  { timestamps: true }
+)
+
+module.exports = Food

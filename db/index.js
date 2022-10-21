@@ -1,7 +1,7 @@
 const mongoose = require('mongoose') //setting up a mongoose database
 
 mongoose
-  .connect('mongodb://127.0.0.1:27017/booksDatabase') //connecting to a db that we don't have yet... that will create it for us
+  .connect('mongodb://127.0.0.1:27017/foodDatabase') //connecting to a db that we don't have yet... that will create it for us
   //need to drop a db? in mongosh, within that db: booksDatabase> db.dropDatabase()=> {ok: 1, dropped: 'bookDatabase'}
   .then(() => {
     ///.then just creates a hierarchy to the order of when these lines fire
