@@ -45,9 +45,56 @@ const updateFood = async () => {
   )
 }
 
+//CRUD - Read a house
 const findHouse = async () => {
-  const house = await House.findOne()
+  const house = await House.findOne({ owner: 'josh' })
   console.log(house)
+}
+
+//CRUD - Create a House
+const createHouse = async () => {
+  const house = await House.create({
+    owner: 'josh',
+    storages: [
+      {
+        storageType: 'fridge',
+        location: 'kitchen',
+        foods: []
+      },
+      {
+        storageType: 'freezer',
+        location: 'kitchen',
+        foods: []
+      },
+      {
+        storageType: 'pantry',
+        location: 'kitchen',
+        foods: []
+      }
+    ]
+  })
+}
+
+//CRUD - update a house (add a storage(utility fridge)
+const updateHouse = async () => {
+  const house = await House.updateOne(
+    { owner: 'josh' },
+    {
+      $push: {
+        storages: {
+          storageType: 'fridge',
+          location: 'utility room',
+          foods: []
+        }
+      }
+    }
+  )
+}
+
+//CRUD - delete a house
+const deleteHouse = async () => {
+  let deleted = await House.deleteOne({ owner: 'josh' })
+  console.log(deleted)
 }
 
 const main = async () => {
@@ -57,6 +104,9 @@ const main = async () => {
     // await updateFood()
     // await deleteFood()
     // await findHouse()
+    // await createHouse()
+    // await updateHouse()
+    await deleteHouse()
   } catch (error) {
     console.log(error)
   } finally {
