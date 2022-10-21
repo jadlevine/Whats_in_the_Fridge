@@ -1,0 +1,30 @@
+{
+  "name": "whats_in_the_fridge",
+  "version": "1.0.0",
+  "description": "## Date: 10/28/2022",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadlevine/whats_in_the_fridge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jadlevine/whats_in_the_fridge/issues"
+  },
+  "homepage": "https://github.com/jadlevine/whats_in_the_fridge#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.6.6",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
