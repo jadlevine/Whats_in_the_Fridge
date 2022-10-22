@@ -11,8 +11,11 @@ const Food = new Schema(
   ///1. all the fields we want for our record/document
   {
     name: { type: String, required: true },
-    house_id: { type: Schema.Types.ObjectId, ref: 'house_id', required: true },
-    storageLocation: { type: String, required: true }
+    owner: { type: String, required: true },
+    location: { type: String, required: true }
+
+    // house_id: { type: Schema.Types.ObjectId, ref: 'house_id', required: true },
+    // storageLocation: { type: String, required: true }
     // expirationDate: { type: Date, required: true },
     // storageLocation_id: {
     //   type: Schema.Types.ObjectId,

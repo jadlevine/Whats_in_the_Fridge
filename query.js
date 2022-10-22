@@ -99,14 +99,19 @@ const deleteHouse = async () => {
 
 const main = async () => {
   try {
-    // await createFood()
-    // await findFood()
-    // await updateFood()
-    // await deleteFood()
+    await createHouse()
+    await createFood()
     // await findHouse()
-    // await createHouse()
+    // await findFood()
     // await updateHouse()
-    await deleteHouse()
+    // await updateFood()
+    // await deleteHouse()
+    // await deleteFood()
+
+    ////////////YOU ARE HERE//////////////////////
+    //next step is to make this dynamic, rather than hardcoded
+    ///or maybe, just move on to express and the rest of the backend
+    //////////////////////////////////////////////
   } catch (error) {
     console.log(error)
   } finally {
