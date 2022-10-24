@@ -30,25 +30,11 @@ const updateFoodLocation = async (req, res) => {
 }
 
 const deleteFood = async (req, res) => {
-  let deleted = await Food.deleteOne(
-    {
-      name: req.params.name,
-      owner: req.params.owner,
-      location: req.params.location
-    }
-    ////BUG - a delete request on a non existant document still
-    // (error) => {
-    //   if (error) {
-    //     res.json(
-    //       `${req.params.owner} doesn't have any ${req.params.name} in his ${req.params.location} to remove`
-    //     )
-    //   } else {
-    //     res.json(
-    //       `${req.params.owner}'s ${req.params.name} removed from ${req.params.location}`
-    //     )
-    //   }
-    // }
-  )
+  let deleted = await Food.deleteOne({
+    name: req.params.name,
+    owner: req.params.owner,
+    location: req.params.location
+  })
   if (deleted.deletedCount === 0) {
     res.json(
       `${req.params.owner} doesn't have any ${req.params.name} in his ${req.params.location} to remove`
