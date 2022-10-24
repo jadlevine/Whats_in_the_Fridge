@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const Food = (props) => {
   //insert a delete button  here and then make it functional, then update button...add food should be a form that is NOT in this component
 
