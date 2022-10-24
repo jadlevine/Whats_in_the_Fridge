@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const Food = (props) => {
+  const foodId = props.id
   //insert a delete button  here and then make it functional, then update button...add food should be a form that is NOT in this component
   const deleteFood = async (event) => {
     console.log(event.target.id)
@@ -26,7 +27,23 @@ const Food = (props) => {
   }
 
   const updateFood = async (event) => {
+    //not sure if we need to prevent default here?
+    event.preventDefault()
     console.log('update requested')
+    console.log(foodId)
+    //make axios call here with newFood
+
+    try {
+      const response = await axios.put(
+        // `http://localhost:3001/foods/josh/pantry/${event.target.name}`
+        `http://localhost:3001/foods/${foodId}`
+      )
+      console.log(response.data)
+      props.getFridgeFoods()
+      // props.setFridgeContents(...props.fridgeContents, response.data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
