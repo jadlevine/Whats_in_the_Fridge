@@ -28,26 +28,6 @@ const HouseDetails = (props) => {
     getFridgeFoods()
   }, [])
 
-  const deleteFood = async (event) => {
-    try {
-      //axios request
-      const response = await axios.delete(
-        `http://localhost:3001/foods/${event.target.id}`
-      )
-      //update state of fridgeContents
-      let updatedFridgeContents = []
-      fridgeContents.map((food) => {
-        if (food._id !== event.target.id) {
-          updatedFridgeContents.push(food)
-        }
-      })
-      setFridgeContents(updatedFridgeContents)
-    } catch (err) {
-      console.log(err)
-    }
-    // console.log(event.target.id)
-  }
-
   //do this AFTER you figure out create food form!!
   // const updateFood = async (event) => {
   //   try {
@@ -90,8 +70,7 @@ const HouseDetails = (props) => {
               name={food.name}
               owner={food.owner}
               location={food.location}
-              deleteFood={deleteFood}
-              // updateFood={updateFood}
+              getFridgeFoods={getFridgeFoods}
             />
           ))}
         </ul>

@@ -18,7 +18,6 @@ const NewFood = (props) => {
 
   const addFood = async (event) => {
     event.preventDefault()
-    console.log(newFood)
     //make axios call here with newFood
     try {
       const response = await axios.post(
