@@ -8,6 +8,14 @@ import NewFood from '../components/NewFood'
 const HouseDetails = (props) => {
   let { owner } = useParams()
 
+  //this belongs here, somwhere:
+  // //state of new storage type
+  // const [newStorage, setNewStorage] = useState({
+  //   storageType: '',
+  //   storageLocation: '',
+  //   foods: []
+  // })
+
   // const [houseDetails, setHouseDetails] = useState('')
   // const [foods, setFoods] = useState([])
   const [fridgeContents, setFridgeContents] = useState([])
