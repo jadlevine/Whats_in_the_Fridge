@@ -31,14 +31,16 @@ const Houses = () => {
   }
 
   return (
-    <div className="home">
-      <h1>House List</h1>
-      <div
-        className="house-card"
-        onClick={() => showHouse('josh')}
-        key={'1234'}
-      >
-        <h3>Josh's House</h3>
+    <div className="houses">
+      <div id="house-list">
+        <h1>House List</h1>
+        <div
+          className="house-card"
+          onClick={() => showHouse('josh')}
+          key={'1234'}
+        >
+          <h3>Josh's House</h3>
+        </div>
       </div>
       <AddNewHouseForm />
     </div>

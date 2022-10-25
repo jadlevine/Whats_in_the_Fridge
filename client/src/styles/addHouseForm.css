@@ -1,0 +1,30 @@
+#add-house-form{
+  display:flex;
+  flex-direction: column;
+  width: 30vw;
+  margin: 3vw;
+  padding: 1vw;
+  background-color:darkgoldenrod;
+}
+#add-house-form .text-input{
+  margin: 0 0 0 5px;
+}
+
+#add-house-form #storage-options{
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+}
+
+.checkbox{
+  cursor:pointer;
+}
+#storage-options div{
+  align-self: flex-start;
+}
+
+button{
+  border-radius: 5px;
+  cursor:pointer;
+  align-self: center;
+}

@@ -1,5 +1,8 @@
+@import "addHouseForm.css";
+
 body {
   margin: 0;
+  text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -39,6 +42,7 @@ code {
   font-weight: bold;
   margin-left:5vw;
 }
-.wtf{
-  /* margin: 0 10vw; */
+.houses{
+  display:flex;
+  justify-content: space-between;
 }
