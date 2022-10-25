@@ -1,22 +1,25 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Nav from './components/Nav'
+import Landing from './pages/Landing'
+import About from './pages/About'
+import Houses from './pages/Houses'
 import HouseDetails from './pages/HouseDetails'
-
-// import { useState } from 'react'
+import FoodDetails from './pages/FoodDetails'
+import Nav from './components/Nav'
+// import { useState, useEffect } from 'react'
 
 const App = () => {
+  //this is where ALL the page routes get set
   return (
     <div>
       <Nav />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/houses/:owner"
-            element={<HouseDetails house={'josh'} />}
-          />
+          <Route path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/houses" element={<Houses />} />
+          <Route path="/houses/:id" element={<HouseDetails />} />
+          <Route path="/foods/:id" element={<FoodDetails />} />
         </Routes>
       </main>
     </div>

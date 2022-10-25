@@ -31,8 +31,10 @@ const Food = (props) => {
     event.preventDefault()
     console.log('update requested')
     console.log(foodId)
-    //make axios call here with newFood
 
+    //ideally --> coniditionally render a form with food details, and be able to change them, update the food object, then send axios.put with the updated object
+
+    //make axios call here with newFood
     try {
       const response = await axios.put(
         // `http://localhost:3001/foods/josh/pantry/${event.target.name}`

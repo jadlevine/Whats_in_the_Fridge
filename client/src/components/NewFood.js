@@ -9,6 +9,8 @@ const NewFood = (props) => {
     name: '',
     //need to go up to house details and be able to dynamically pass owner variable to this. then below should just automatically be whoever's housedetail page you are on
     owner: 'josh',
+
+    ///YOU ARE HERE... hardcoding the line below to be ANYTHING solves the   message: 'Path `location` is required.', error on the db connection
     location: ''
   })
 
@@ -20,10 +22,10 @@ const NewFood = (props) => {
     event.preventDefault()
     //make axios call here with newFood
     try {
-      const response = await axios.post(
-        `http://localhost:3001/foods/${newFood.owner}/fridge/${newFood.name}`
-      )
+      let response = await axios.post(`http://localhost:3001/foods`, newFood)
       console.log(response.data)
+      // https://github.com/SEI-R-9-19/u2_lesson_react_forms/blob/solution/client/src/components/Form.js#:~:text=setformstate(initialstate)
+      // setFormState(initialState)
       props.getFridgeFoods()
       // props.setFridgeContents(...props.fridgeContents, response.data)
     } catch (err) {

@@ -12,9 +12,33 @@ code {
     monospace;
 }
 
+.highlight{
+  background-color: orange;
+}
 .navbar {
   display:flex;
   justify-content: space-between;
-  background-color: grey;
   align-items:center;
+  background-color: grey;
+  color:white;
+  padding: 0 3vw;
+}
+
+ .nav-links{
+  display:flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  /* width: 15vw; */
+  /* background-color:green; */
+  /* margin: 0 3vw; */
+ }
+
+.nav-links a{
+  /* text-decoration: none; */
+  color:white;
+  font-weight: bold;
+  margin-left:5vw;
+}
+.wtf{
+  /* margin: 0 10vw; */
 }
