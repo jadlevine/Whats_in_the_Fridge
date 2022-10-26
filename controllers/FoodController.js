@@ -1,19 +1,22 @@
 const { ObjectId } = require('bson')
-const { FoodModel } = require('../models')
+const { FoodModel, BasicFoodModel } = require('../models')
 
 const getAllFoods = async (req, res) => {
-  const foods = await FoodModel.find({})
+  // const foods = await FoodModel.find({})
+  const foods = await BasicFoodModel.find({})
   res.send(foods)
 }
 
 const getFood = async (req, res) => {
-  const food = await FoodModel.find({ _id: req.params.id })
+  // const food = await FoodModel.find({ _id: req.params.id })
+  const food = await BasicFoodModel.find({ _id: req.params.id })
   res.send(food)
 }
 
 //check that this still works
 const deleteFood = async (req, res) => {
-  let deleted = await FoodModel.findOneAndDelete({
+  // let deleted = await FoodModel.findOneAndDelete({
+  let deleted = await BasicFoodModel.findOneAndDelete({
     _id: ObjectId(`${req.params.id}`)
   })
   res.send(`removed one food document: ${deleted}`)
@@ -27,7 +30,8 @@ const deleteFood = async (req, res) => {
 
 //needs work on req.body
 const createFood = async (req, res) => {
-  let newFood = await FoodModel.create(
+  // let newFood = await FoodModel.create(
+  let newFood = await BasicFoodModel.create(
     req.body
     //   {
     //   // name: 'relish',

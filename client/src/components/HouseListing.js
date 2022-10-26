@@ -45,8 +45,3 @@ const HouseListing = (props) => {
 }
 
 export default HouseListing
-
-/* <Link to={`/houses/${house._id}`}>{house.owner}'s House</Link>
-              <button className={house._id} onClick={deleteHouse}>
-                Delete
-              </button> */

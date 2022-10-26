@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import FoodListing from '../components/FoodListing'
 import AddNewFoodForm from '../components/AddNewFoodForm'
+import AddNewStorageForm from '../components/AddNewStorageForm'
+import StorageListing from '../components/StorageListing'
 
 const HouseDetails = () => {
   let { houseid } = useParams()
@@ -23,6 +25,7 @@ const HouseDetails = () => {
     }
   }
 
+  //run gethouse on load
   useEffect(() => {
     getHouse()
   }, [])
@@ -80,12 +83,24 @@ const HouseDetails = () => {
   return (
     <div>
       <h1>{house.owner}'s House</h1>
+      <div className="house-content">
+        <div className="storage-list">
+          {house.storages &&
+            house.storages.map((storage) => (
+              <StorageListing
+                key={storage._id}
+                storage={storage}
+                house={house}
+                setHouse={setHouse}
+              />
+            ))}
+        </div>
+        <div className="house-forms">
+          <AddNewStorageForm house={house} setHouse={setHouse} />
+          <AddNewFoodForm house={house} setHouse={setHouse} />
+        </div>
+      </div>
       {/* <div>
-        <AddNewFoodForm
-          setFridgeContents={setFridgeContents}
-          fridgeContents={fridgeContents}
-          getFridgeFoods={getFridgeFoods}
-        />
       </div>
       <div id="joshs-fridge">
         <h3>Josh's Fridge</h3>

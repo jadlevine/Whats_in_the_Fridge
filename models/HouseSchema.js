@@ -8,7 +8,9 @@ const HouseSchema = new Schema(
       {
         storageType: { type: String, required: true },
         storageLocation: { type: String, required: true },
-        foods: [{ type: Schema.Types.ObjectId, ref: 'foodId' }]
+        // foods: [{ type: Schema.Types.ObjectId, ref: 'foodId' }]
+        // foods: [{ type: Schema.Types.ObjectId, ref: 'foodid' }]
+        foods: [{ type: Schema.Types.ObjectId, ref: 'FoodModel' }]
       }
     ] //end of storage array
   }, //end of House fields

@@ -7,7 +7,8 @@ const FoodSchema = new Schema(
   //two args {fields for doc},{timestamps:true} /// 54.12 on tuesday
   {
     name: { type: String, required: true },
-    house: { type: Schema.Types.ObjectId, ref: 'houseId', required: true },
+    // house: { type: Schema.Types.ObjectId, ref: 'houseId', required: true },
+    house: { type: Schema.Types.ObjectId, ref: 'HouseModel', required: true },
 
     //come back once you set a hosue up... does each storagelocation have a unique id?
     location: { type: String, required: true },
