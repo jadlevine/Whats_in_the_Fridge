@@ -2,6 +2,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import AddNewHouseForm from '../components/AddNewHouseForm'
+import AddNewHouseFormTest from '../components/AddNewHouseFormTest'
 
 const Houses = () => {
   let navigate = useNavigate()
@@ -13,7 +14,7 @@ const Houses = () => {
     try {
       const response = await axios.get(`http://localhost:3001/houses`)
       //pause here... go make the "add a house form"
-      console.log(response.data)
+      // console.log(response.data)
       setHouses(response.data)
     } catch (err) {
       console.log(err)
@@ -23,9 +24,27 @@ const Houses = () => {
     getHouses()
   }, [])
 
-  const showHouse = (owner) => {
-    navigate(`/houses/${owner}`)
+  const deleteHouse = async (event) => {
+    event.preventDefault()
+    console.log(event.target.className)
+    try {
+      const deleted = await axios.delete(
+        `http://localhost:3001/houses/${event.target.className}`
+      )
+
+      //remove deleted from houses
+      let updatedHouses = houses.filter((house) => {
+        return house._id !== deleted.data._id
+      })
+      setHouses(updatedHouses)
+    } catch (err) {
+      console.log(err)
+    }
   }
+  //don't need this if just using Link below
+  // const showHouse = (owner) => {
+  //   navigate(`/houses/${owner}`)
+  // }
 
   // console.log(houses[0])
 
@@ -37,11 +56,15 @@ const Houses = () => {
           {houses.map((house) => (
             <li key={house._id}>
               <Link to={`/houses/${house._id}`}>{house.owner}'s House</Link>
+              <button className={house._id} onClick={deleteHouse}>
+                Delete
+              </button>
             </li>
           ))}
         </ul>
       </div>
-      <AddNewHouseForm setHouses={setHouses} houses={houses} />
+      {/* <AddNewHouseForm setHouses={setHouses} houses={houses} /> */}
+      <AddNewHouseFormTest setHouses={setHouses} houses={houses} />
     </div>
   )
 }

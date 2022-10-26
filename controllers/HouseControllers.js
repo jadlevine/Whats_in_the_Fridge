@@ -15,7 +15,7 @@ const deleteHouse = async (req, res) => {
   const deleted = await HouseModel.findOneAndDelete({
     _id: ObjectId(`${req.params.id}`)
   })
-  res.send(`removed one house document: ${deleted}`)
+  res.send(deleted)
 }
 
 const createHouse = async (req, res) => {
