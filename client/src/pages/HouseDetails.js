@@ -2,11 +2,30 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Food from '../components/Food'
-import NewFood from '../components/NewFood'
+import FoodListing from '../components/FoodListing'
+import AddNewFoodForm from '../components/AddNewFoodForm'
 
-const HouseDetails = (props) => {
-  let { owner } = useParams()
+const HouseDetails = () => {
+  let { houseid } = useParams()
+  // console.log(houseid)
+  const [house, setHouse] = useState({})
+
+  //make axios request to pull up house document
+  const getHouse = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/houses/${houseid}`
+      )
+      // console.log(response)
+      setHouse(response.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getHouse()
+  }, [])
 
   //this belongs here, somwhere:
   // //state of new storage type
@@ -18,23 +37,23 @@ const HouseDetails = (props) => {
 
   // const [houseDetails, setHouseDetails] = useState('')
   // const [foods, setFoods] = useState([])
-  const [fridgeContents, setFridgeContents] = useState([])
-  const [updated, setUpdated] = useState(false)
+  // const [fridgeContents, setFridgeContents] = useState([])
+  // const [updated, setUpdated] = useState(false)
 
-  //maybe just just this to ALWAYS recall, rerender the whol list, anytime there is ANY UPDATE (create,delete,update)
-  const getFridgeFoods = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/foods`)
-      console.log(response.data)
-      setFridgeContents(response.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // //maybe just just this to ALWAYS recall, rerender the whol list, anytime there is ANY UPDATE (create,delete,update)
+  // const getFridgeFoods = async () => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:3001/foods`)
+  //     console.log(response.data)
+  //     setFridgeContents(response.data)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
-  useEffect(() => {
-    getFridgeFoods()
-  }, [])
+  // useEffect(() => {
+  //   getFridgeFoods()
+  // }, [])
 
   //do this AFTER you figure out create food form!!
   // const updateFood = async (event) => {
@@ -60,9 +79,9 @@ const HouseDetails = (props) => {
 
   return (
     <div>
-      <h1>{owner}'s House</h1>
-      <div>
-        <NewFood
+      <h1>{house.owner}'s House</h1>
+      {/* <div>
+        <AddNewFoodForm
           setFridgeContents={setFridgeContents}
           fridgeContents={fridgeContents}
           getFridgeFoods={getFridgeFoods}
@@ -72,7 +91,7 @@ const HouseDetails = (props) => {
         <h3>Josh's Fridge</h3>
         <ul className="rearch-results">
           {fridgeContents.map((food) => (
-            <Food
+            <FoodListing
               key={food._id}
               id={food._id}
               name={food.name}
@@ -84,7 +103,7 @@ const HouseDetails = (props) => {
         </ul>
       </div>
       <h3>Josh's Freezer</h3>
-      <h3>Josh's Pantry</h3>
+      <h3>Josh's Pantry</h3> */}
     </div>
   )
 }

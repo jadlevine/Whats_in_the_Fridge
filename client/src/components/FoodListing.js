@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const Food = (props) => {
+const FoodListing = (props) => {
   const foodId = props.id
   //insert a delete button  here and then make it functional, then update button...add food should be a form that is NOT in this component
   const deleteFood = async (event) => {
@@ -59,4 +59,4 @@ const Food = (props) => {
   )
 }
 
-export default Food
+export default FoodListing

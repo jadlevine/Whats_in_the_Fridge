@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const NewFood = (props) => {
+const AddNewFoodForm = (props) => {
   //props.fridgeContents
   //props.setFridgeContents
 
@@ -56,4 +56,4 @@ const NewFood = (props) => {
   )
 }
 
-export default NewFood
+export default AddNewFoodForm

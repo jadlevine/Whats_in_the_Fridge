@@ -7,7 +7,9 @@ const getAllHouses = async (req, res) => {
 }
 
 const getHouse = async (req, res) => {
-  const house = await HouseModel.find({ _id: req.params.id })
+  const house = await HouseModel.findById({
+    _id: req.params.houseid
+  })
   res.send(house)
 }
 

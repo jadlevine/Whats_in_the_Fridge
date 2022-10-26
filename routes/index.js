@@ -18,7 +18,7 @@ router.put('/foods/:id', foodController.updateFood)
 
 //house CRUD
 router.get('/houses', houseController.getAllHouses)
-router.get('/houses/:id', houseController.getHouse)
+router.get('/houses/:houseid', houseController.getHouse)
 router.post('/houses', houseController.createHouse)
 router.delete('/houses/:id', houseController.deleteHouse)
 router.put('/houses/:id', houseController.updateHouse)
