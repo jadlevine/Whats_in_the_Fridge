@@ -3,6 +3,8 @@ import axios from 'axios'
 
 const AddNewHouseForm = () => {
   //state of new house
+  // const [storagesSelected,setStoragesSelected]=useState([])
+  ///there is certainly a cleaner way to keep track of storages selected, but for now... and in addHouse, we will buildRequestBody
   const [newHouse, setNewHouse] = useState({
     owner: '',
     storages: [],
@@ -18,10 +20,45 @@ const AddNewHouseForm = () => {
 
   const addHouse = async (e) => {
     e.preventDefault()
+    class Storage {
+      constructor(storageType, storageLocation) {
+        this.storageType = storageType
+        this.storageLocation = storageLocation
+        this.foods = []
+      }
+    }
+    let storageArray = []
+    if (newHouse.fridge) {
+      let fridgeStorage = new Storage('fridge', newHouse.fridgelocation)
+      storageArray.push(fridgeStorage)
+    }
+    if (newHouse.freezer) {
+      let freezerStorage = new Storage('freezer', newHouse.freezerlocation)
+      storageArray.push(freezerStorage)
+    }
+    if (newHouse.pantry) {
+      let pantryStorage = new Storage('pantry', newHouse.pantrylocation)
+      storageArray.push(pantryStorage)
+    }
+    if (newHouse.spicerack) {
+      let spicerackStorage = new Storage(
+        'spicerack',
+        newHouse.spiceracklocation
+      )
+      storageArray.push(spicerackStorage)
+    }
+
+    let requestBody = {
+      owner: newHouse.owner,
+      storages: storageArray
+    }
+
+    console.log(requestBody)
+
     try {
       let response = await axios.create(
         `http://localhost:3001/houses`,
-        newHouse
+        requestBody
       )
       console.log(response)
       console.log(response.data)

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-const FoodSchema = require('./food')
-const HouseSchema = require('./house')
+const FoodSchema = require('./FoodSchema')
+const HouseSchema = require('./HouseSchema')
 
-const Food = mongoose.model('Food', FoodSchema)
-const House = mongoose.model('House', HouseSchema)
+const FoodModel = mongoose.model('Food', FoodSchema)
+const HouseModel = mongoose.model('House', HouseSchema)
 
 module.exports = {
-  Food,
-  House
+  FoodModel,
+  HouseModel
 }

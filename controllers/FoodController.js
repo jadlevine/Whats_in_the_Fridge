@@ -1,57 +1,60 @@
-const { Food } = require('../models')
+const { ObjectId } = require('bson')
+const { FoodModel } = require('../models')
+
+const getAllFoods = async (req, res) => {
+  const foods = await FoodModel.find({})
+  res.send(foods)
+}
 
 const getFood = async (req, res) => {
-  const foods = await Food.find({})
-  res.json(foods)
-  // res.send({
-  //   message: 'Getting Food'
-  // })
+  const food = await FoodModel.find({ _id: req.params.id })
+  res.send(food)
 }
 
-const createFood = async (req, res) => {
-  let newFood = await Food.create({
-    // name: 'relish',
-    name: req.params.name,
-    // house_id: house._id,
-    owner: req.params.owner,
-    // house_id: //?????
-    // storageLocation: 'fridge'
-    location: req.params.location
-  })
-  res.json(`new food created: ${newFood}`)
-}
-
-const updateFoodLocation = async (req, res) => {
-  const food = await Food.updateOne(
-    { name: req.params.name, owner: req.params.owner },
-    { location: req.params.location }
-  )
-  res.json(`${req.params.name} moved to ${req.params.location}`)
-}
-
+//check that this still works
 const deleteFood = async (req, res) => {
-  let deleted = await Food.deleteOne({
-    name: req.params.name,
-    owner: req.params.owner,
-    location: req.params.location
+  let deleted = await FoodModel.findOneAndDelete({
+    _id: ObjectId(`${req.params.id}`)
   })
-  if (deleted.deletedCount === 0) {
-    res.json(
-      `${req.params.owner} doesn't have any ${req.params.name} in his ${req.params.location} to remove`
-    )
-  } else {
-    res.json(
-      `${req.params.owner}'s ${req.params.name} removed from ${req.params.location}`
-    )
-  }
+  res.send(`removed one food document: ${deleted}`)
+  //this was from when i was using deleteOne, which did NOT return the deleted document/record
+  // if (deleted.deletedCount === 0) {
+  //   res.send(`item not found`)
+  // } else {
+  //   res.send(`id: ${req.params.id} deleted`)
+  // }
 }
 
-//you are here in controllers lesson
-//https://github.com/SEI-R-9-19/u2_lesson_express_controllers#:~:text=You've%20just%20successfully,first%20controller%20function!
+//needs work on req.body
+const createFood = async (req, res) => {
+  let newFood = await FoodModel.create(
+    req.body
+    //   {
+    //   // name: 'relish',
+    //   name: req.params.name,
+    //   // house_id: house._id,
+    //   owner: req.params.owner,
+    //   // house_id: //?????
+    //   // storageLocation: 'fridge'
+    //   location: req.params.location
+    // }
+  )
+  res.send(newFood)
+}
+
+//needs work...on everything
+const updateFood = async (req, res) => {
+  const food = await FoodModel.updateOne(
+    { _id: req.params.id },
+    { location: 'pantry' }
+  )
+  res.json(`${req.params.id} moved to pantry`)
+}
 
 module.exports = {
+  getAllFoods,
   getFood,
   createFood,
   deleteFood,
-  updateFoodLocation
+  updateFood
 }

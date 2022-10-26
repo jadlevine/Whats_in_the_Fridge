@@ -1,13 +1,13 @@
 const db = require('../db')
-const { House, Food } = require('../models')
+const { HouseModel, FoodModel } = require('../models')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 const main = async () => {
-  const joshsHouse = await House.find({ owner: 'josh' })
+  const joshsHouse = await HouseModel.find({ owner: 'josh' })
   // const michaelsHouse = await House.find({owner:'michael'})
   console.log(joshsHouse[0].storages[0]._id)
-
+}
 //   const foods = [
 //     {
 //       name: 'cucumbers',
