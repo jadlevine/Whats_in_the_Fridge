@@ -22,7 +22,7 @@ const createHouse = async (req, res) => {
   //do something
   console.log(req.body)
   let newHouse = await HouseModel.create(req.body)
-  res.send('trying to create house')
+  res.send(newHouse)
 }
 
 const updateHouse = async (req, res) => {

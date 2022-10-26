@@ -40,24 +40,8 @@ const Houses = () => {
             </li>
           ))}
         </ul>
-        {/* <ul className="house-list">
-          {houses.length > 0 ? (
-            houses.map((house) => {
-              ;<li>{house.id}</li>
-            })
-          ) : (
-            <li>No Houses Available</li>
-          )}
-        </ul> */}
-        {/* <div
-          className="house-card"
-          onClick={() => showHouse('josh')}
-          key={'1234'}
-        >
-          <h3>Josh's House</h3>
-        </div> */}
       </div>
-      <AddNewHouseForm />
+      <AddNewHouseForm setHouses={setHouses} houses={houses} />
     </div>
   )
 }

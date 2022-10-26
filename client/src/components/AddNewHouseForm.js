@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const AddNewHouseForm = () => {
+const AddNewHouseForm = (props) => {
   //state of new house
   // const [storagesSelected,setStoragesSelected]=useState([])
   ///there is certainly a cleaner way to keep track of storages selected, but for now... and in addHouse, we will buildRequestBody
@@ -56,13 +56,14 @@ const AddNewHouseForm = () => {
     console.log(requestBody)
 
     try {
-      let response = await axios.create(
+      let response = await axios.post(
         `http://localhost:3001/houses`,
         requestBody
       )
       console.log(response)
       console.log(response.data)
       //do something to re-render the Houses (parent) page to show the newly added house
+      props.setHouses([...props.houses, response.data])
     } catch (err) {
       console.log(err)
     }
