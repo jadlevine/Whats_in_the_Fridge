@@ -48,7 +48,8 @@ const createFood = async (req, res) => {
 
 //needs work...on everything
 const updateFood = async (req, res) => {
-  const food = await FoodModel.updateOne(
+  // const food = await FoodModel.updateOne(
+  const food = await BasicFoodModel.updateOne(
     { _id: req.params.id },
     { location: 'pantry' }
   )

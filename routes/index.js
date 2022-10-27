@@ -4,7 +4,7 @@ const router = Router()
 //require controllers
 //update this once you implement index.js in controllers folder // const controllers = require('../controllers')
 const foodController = require('../controllers/FoodController')
-const houseController = require('../controllers/HouseControllers')
+const houseController = require('../controllers/HouseController')
 
 //root
 router.get('/', (req, res) => res.send('I am Root'))

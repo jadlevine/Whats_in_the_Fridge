@@ -6,8 +6,8 @@ const BasicFoodSchema = require('./BasicFoodSchema')
 
 const FoodModel = mongoose.model('Food', FoodSchema)
 const HouseModel = mongoose.model('House', HouseSchema)
-const BasicHouseModel = mongoose.model('BasicHouse', BasicHouseSchema)
-const BasicFoodModel = mongoose.model('BasicFood', BasicFoodSchema)
+const BasicHouseModel = mongoose.model('BasicHouseModel', BasicHouseSchema)
+const BasicFoodModel = mongoose.model('BasicFoodModel', BasicFoodSchema)
 
 module.exports = {
   FoodModel,

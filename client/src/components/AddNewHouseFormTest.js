@@ -4,7 +4,7 @@ import axios from 'axios'
 const AddNewHouseFormTest = (props) => {
   const [newHouse, setNewHouse] = useState({
     owner: '',
-    storages: []
+    foods: []
   })
 
   let starterStorageOptions = [
@@ -46,7 +46,7 @@ const AddNewHouseFormTest = (props) => {
       //reset the form
       setNewHouse({
         owner: '',
-        storages: []
+        foods: []
       })
     } catch (err) {
       console.log(err)

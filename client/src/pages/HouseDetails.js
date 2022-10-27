@@ -18,7 +18,7 @@ const HouseDetails = () => {
       const response = await axios.get(
         `http://localhost:3001/houses/${houseid}`
       )
-      // console.log(response)
+      console.log(response)
       setHouse(response.data)
     } catch (err) {
       console.log(err)

@@ -9,9 +9,15 @@ const getAllHouses = async (req, res) => {
 
 const getHouse = async (req, res) => {
   // const house = await HouseModel.findById({
+
+  // const house = await BasicHouseModel.findById({
+  //   _id: req.params.houseid
+  // })
+
   const house = await BasicHouseModel.findById({
     _id: req.params.houseid
-  })
+  }).populate({ path: 'foods' })
+
   res.send(house)
 }
 
