@@ -1,14 +1,18 @@
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
+//each houselisting shows name of owner, details button (navigate to house details), and delete button (if NOT protected)
+
 const HouseListing = (props) => {
   let navigate = useNavigate()
   const houseid = props.house._id
-  console.log(houseid)
 
-  //each houselisting should show the name of the house, and a delete button (if appropriate)
-  //see details button should navigat them to housedetails page
-  //then hosuedetails page can make a new api call based on id in param
+  //protect josh and nora house
+  const protectedHouses = [
+    '635a86cf6ad17f91a7685674',
+    '635a880bf5047a380f004a3c'
+  ]
+  const houseProtected = protectedHouses.includes(houseid)
 
   const deleteHouse = async (event) => {
     event.preventDefault()
@@ -17,7 +21,7 @@ const HouseListing = (props) => {
         `http://localhost:3001/houses/${houseid}`
       )
 
-      //remove deleted from houses
+      //remove deleted from houses state
       let updatedHouses = props.houses.filter((house) => {
         return house._id !== deleted.data._id
       })
@@ -37,9 +41,11 @@ const HouseListing = (props) => {
       <button className={houseid} onClick={seeDetails}>
         Details
       </button>
-      <button className={houseid} onClick={deleteHouse}>
-        Delete
-      </button>
+      {!houseProtected && (
+        <button className={houseid} onClick={deleteHouse}>
+          Delete
+        </button>
+      )}
     </li>
   )
 }
