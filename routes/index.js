@@ -11,16 +11,16 @@ router.get('/', (req, res) => res.send('I am Root'))
 
 //food CRUD
 router.get('/foods', foodController.getAllFoods)
-router.get('/foods/:id', foodController.getFood)
+router.get('/foods/:foodid', foodController.getFood)
 router.post('/foods', foodController.createFood)
-router.delete('/foods/:id', foodController.deleteFood)
-router.put('/foods/:id', foodController.updateFood)
+router.delete('/foods/:foodid', foodController.deleteFood)
+router.put('/foods/:foodid', foodController.updateFood)
 
 //house CRUD
 router.get('/houses', houseController.getAllHouses)
 router.get('/houses/:houseid', houseController.getHouse)
 router.post('/houses', houseController.createHouse)
-router.delete('/houses/:id', houseController.deleteHouse)
-router.put('/houses/:id', houseController.updateHouse)
+router.delete('/houses/:houseid', houseController.deleteHouse)
+router.put('/houses/:houseid', houseController.updateHouse)
 
 module.exports = router
