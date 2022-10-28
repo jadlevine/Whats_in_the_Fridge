@@ -4,7 +4,7 @@ import Landing from './pages/Landing'
 import About from './pages/About'
 import Houses from './pages/Houses'
 import HouseDetails from './pages/HouseDetails'
-import FoodDetails from './pages/FoodDetails'
+// import FoodUpdateForm from './components/FoodDetails'
 import Nav from './components/Nav'
 // import { useState, useEffect } from 'react'
 
@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/houses" element={<Houses />} />
           <Route path="/houses/:houseid" element={<HouseDetails />} />
-          <Route path="/foods/:id" element={<FoodDetails />} />
+          {/* <Route path="/foods/:id" element={<FoodDetails />} /> */}
         </Routes>
       </main>
     </div>

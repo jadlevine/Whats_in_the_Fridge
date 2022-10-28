@@ -1,5 +1,5 @@
 const { ObjectId } = require('bson')
-const { HouseModel } = require('../models')
+const { HouseModel, FoodModel } = require('../models')
 
 const getAllHouses = async (req, res) => {
   const houses = await HouseModel.find({})
@@ -18,12 +18,18 @@ const getHouse = async (req, res) => {
   res.send(house)
 }
 
+//deleteHouse removes housemodel AND any FoodModels that were in it
 const deleteHouse = async (req, res) => {
-  const deleted = await HouseModel.findOneAndDelete({
+  const deletedHouse = await HouseModel.findOneAndDelete({
     _id: req.params.houseid
     // _id: ObjectId(`${req.params.id}`)
   })
-  res.send(deleted)
+  //then, remove any foods that were in the house
+  let deletedConfirmation = await FoodModel.deleteMany({
+    house: deletedHouse._id
+  })
+
+  res.send(deletedHouse)
 }
 
 const createHouse = async (req, res) => {

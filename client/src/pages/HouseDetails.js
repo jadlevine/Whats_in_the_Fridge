@@ -4,14 +4,17 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import FoodListing from '../components/FoodListing'
 import AddNewFoodForm from '../components/AddNewFoodForm'
-import AddNewStorageForm from '../components/AddNewStorageForm'
-import StorageListing from '../components/StorageListing'
+import FoodUpdateForm from '../components/FoodUpdateForm'
+
+// import AddNewStorageForm from '../components/AddNewStorageForm'
+// import StorageListing from '../components/StorageListing'
 
 const HouseDetails = () => {
   let { houseid } = useParams()
   // console.log(houseid)
   const [house, setHouse] = useState([])
   const [houseUpdate, setHouseUpdate] = useState(true)
+  const [foodToUpdate, setFoodToUpdate] = useState([])
 
   //get house document
   const getHouse = async () => {
@@ -52,6 +55,7 @@ const HouseDetails = () => {
                   house={house}
                   setHouse={setHouse}
                   setHouseUpdate={setHouseUpdate}
+                  setFoodToUpdate={setFoodToUpdate}
                 />
               ))}
             </ul>
@@ -66,6 +70,7 @@ const HouseDetails = () => {
                   house={house}
                   setHouse={setHouse}
                   setHouseUpdate={setHouseUpdate}
+                  setFoodToUpdate={setFoodToUpdate}
                 />
               ))}
             </ul>
@@ -80,6 +85,7 @@ const HouseDetails = () => {
                   house={house}
                   setHouse={setHouse}
                   setHouseUpdate={setHouseUpdate}
+                  setFoodToUpdate={setFoodToUpdate}
                 />
               ))}
             </ul>
@@ -94,6 +100,7 @@ const HouseDetails = () => {
                   house={house}
                   setHouse={setHouse}
                   setHouseUpdate={setHouseUpdate}
+                  setFoodToUpdate={setFoodToUpdate}
                 />
               ))}
             </ul>
@@ -106,6 +113,16 @@ const HouseDetails = () => {
             setHouse={setHouse}
             setHouseUpdate={setHouseUpdate}
           />
+          {foodToUpdate.name ? (
+            <FoodUpdateForm
+              foodToUpdate={foodToUpdate}
+              setHouseUpdate={setHouseUpdate}
+              house={house}
+              setFoodToUpdate={setFoodToUpdate}
+            />
+          ) : (
+            <p>Click on a Food to see details and make updates</p>
+          )}
         </div>
       </div>
     </div>

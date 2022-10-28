@@ -11,10 +11,9 @@ const getFood = async (req, res) => {
   res.send(food)
 }
 
-//check that this still works
+//delete food: deletes food from DB AND removes reference from housemodel
 const deleteFood = async (req, res) => {
   let deletedFood = await FoodModel.findOneAndDelete({
-    // _id: ObjectId(`${req.params.foodid}`)
     _id: req.params.foodid
   })
   //then, remove any references to the deleted...
@@ -22,7 +21,6 @@ const deleteFood = async (req, res) => {
     { _id: deletedFood.house },
     { $pull: { [deletedFood.storage]: deletedFood._id } }
   )
-
   res.send(deletedFood)
 }
 
@@ -35,7 +33,7 @@ const createFood = async (req, res) => {
 //see updateHouse in house controller for notes
 const updateFood = async (req, res) => {
   try {
-    const food = await FoodModel.findByIdAndUpdate(
+    const food = await FoodModel.findOneAndReplace(
       req.params.foodid,
       req.body,
       {

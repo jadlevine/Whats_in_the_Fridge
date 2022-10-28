@@ -19,11 +19,12 @@ const HouseListing = (props) => {
 
     //delete house from db
     try {
+      //this line ALSO removes all foods in house from db (HouseController.js=>deleteHouse)
       const deleted = await axios.delete(
         `http://localhost:3001/houses/${houseid}`
       )
 
-      //remove deleted from houses state
+      //remove deleted from houses and reset houses state
       let updatedHouses = props.houses.filter((house) => {
         return house._id !== deleted.data._id
       })

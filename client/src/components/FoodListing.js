@@ -4,7 +4,7 @@ import axios from 'axios'
 
 ////maybe checkbox for if opened or not
 const FoodListing = (props) => {
-  //props = food, house, setHouse, setHouseUpdate
+  //props = food, house, setHouse, setHouseUpdate, setFoodToUpdate
   let foodid = props.food._id
 
   const deleteFood = async (event) => {
@@ -41,15 +41,15 @@ const FoodListing = (props) => {
     }
   }
 
-  const seeDetails = () => {
-    console.log('seeDetails')
+  const updateDetails = () => {
+    props.setFoodToUpdate(props.food)
   }
 
   return (
     <li>
       <div>{props.food.name}</div>
-      <button className={foodid} onClick={seeDetails}>
-        Details/Update
+      <button className={foodid} onClick={updateDetails}>
+        See Details
       </button>
       <button className={foodid} onClick={deleteFood}>
         Delete
