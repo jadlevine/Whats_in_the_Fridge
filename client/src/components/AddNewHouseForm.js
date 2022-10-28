@@ -35,7 +35,7 @@ const AddNewHouseForm = (props) => {
 
   return (
     <div>
-      <form id="add-house-form">
+      <form className="add-form">
         <h3>Add Your House!</h3>
         <input
           name="owner"

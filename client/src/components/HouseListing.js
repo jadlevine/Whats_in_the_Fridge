@@ -41,14 +41,16 @@ const HouseListing = (props) => {
   return (
     <li className="list-item">
       <div>{props.house.owner}'s House</div>
-      <button className={houseid} onClick={seeDetails}>
-        Details
-      </button>
-      {!houseProtected && (
-        <button className={houseid} onClick={deleteHouse}>
-          Delete
+      <div className="button-list">
+        {!houseProtected && (
+          <button className={houseid} onClick={deleteHouse}>
+            Delete
+          </button>
+        )}
+        <button className={houseid} onClick={seeDetails}>
+          Details
         </button>
-      )}
+      </div>
     </li>
   )
 }

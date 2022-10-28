@@ -75,52 +75,58 @@ const FoodUpdateForm = (props) => {
   }
 
   return (
-    <div id="food-update-form">
+    <div className="add-form">
       <form onSubmit={submitUpdate}>
         <h3>Food Details</h3>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={updatedFood.name}
-            onChange={handleChange}
-            name={'name'}
-            placeholder={initialFood.name}
-          />
-        </label>
-        <label>
-          Storage Location:
-          <select
-            name="storage"
-            value={updatedFood.storage}
-            onChange={handleChange}
-          >
-            <option value="fridge">Fridge</option>
-            <option value="freezer">Freezer</option>
-            <option value="pantry">Pantry</option>
-            <option value="otherStorage">Other Storage</option>
-          </select>
-        </label>
-        <label>
-          Opened?
-          <input
-            name="opened"
-            type="checkbox"
-            onChange={handleChange}
-            checked={updatedFood.checked}
-            className="checkbox"
-          />
-        </label>
-        <label>
-          Notes:
-          <textarea
-            // type="textarea"
-            value={updatedFood.notes}
-            onChange={handleChange}
-            name={'notes'}
-            placeholder={initialFood.notes}
-          />
-        </label>
+        <div className="food-details">
+          <label>
+            Name:
+            <input
+              type="text"
+              value={updatedFood.name}
+              onChange={handleChange}
+              name={'name'}
+              placeholder={initialFood.name}
+            />
+          </label>
+          <br />
+          <label>
+            Storage Location:
+            <select
+              name="storage"
+              value={updatedFood.storage}
+              onChange={handleChange}
+            >
+              <option value="fridge">Fridge</option>
+              <option value="freezer">Freezer</option>
+              <option value="pantry">Pantry</option>
+              <option value="otherStorage">Other Storage</option>
+            </select>
+          </label>
+          <br />
+          <label>
+            Opened?
+            <input
+              name="opened"
+              type="checkbox"
+              onChange={handleChange}
+              checked={updatedFood.checked}
+              className="checkbox"
+            />
+          </label>
+          <br />
+          <label>
+            Notes:
+            <textarea
+              // type="textarea"
+              value={updatedFood.notes}
+              onChange={handleChange}
+              name={'notes'}
+              placeholder={initialFood.notes}
+            />
+          </label>
+        </div>
+        <br />
         <button>Submit</button>
       </form>
     </div>

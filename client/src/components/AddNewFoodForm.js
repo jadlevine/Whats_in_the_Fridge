@@ -59,7 +59,7 @@ const AddNewFoodForm = (props) => {
   } //end of addFood function
 
   return (
-    <form onSubmit={addFood}>
+    <form onSubmit={addFood} className="add-form">
       <h3>Add a Food!</h3>
       <input
         type="text"
@@ -69,7 +69,7 @@ const AddNewFoodForm = (props) => {
         placeholder={'Food Name (required)'}
         required
       />
-      <label>Location drop down label placeholder</label>
+      <br />
       <select
         name="storage"
         value={newFood.storage}
@@ -84,6 +84,7 @@ const AddNewFoodForm = (props) => {
         <option value="pantry">Pantry</option>
         <option value="otherStorage">Other Storage</option>
       </select>
+      <br />
       <button>Submit</button>
     </form>
   )

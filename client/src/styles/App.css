@@ -47,3 +47,31 @@ code {
   display:flex;
   justify-content: space-between;
 }
+
+.list-item{
+  display:flex;
+  justify-content: space-between;
+  margin: 1vw;
+  border: 1pt solid black;
+  border-radius: 2px;
+}
+.list-item .button-list{
+  display:flex;
+  justify-content: flex-end;
+}
+.list-item button{
+  margin: 0 0 0 2vw;
+}
+
+#landing-about{
+  font-size:larger;
+  line-height: 2em;
+}
+#questions-list{
+  font-size: larger;
+}
+.food-details{
+  display:flex;
+  flex-direction:column;
+  align-items: flex-start;
+}

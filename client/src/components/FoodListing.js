@@ -46,14 +46,16 @@ const FoodListing = (props) => {
   }
 
   return (
-    <li>
+    <li className="list-item">
       <div>{props.food.name}</div>
-      <button className={foodid} onClick={updateDetails}>
-        See Details
-      </button>
-      <button className={foodid} onClick={deleteFood}>
-        Delete
-      </button>
+      <div className="buttons-list">
+        <button className={foodid} onClick={deleteFood}>
+          Delete
+        </button>
+        <button className={foodid} onClick={updateDetails}>
+          See Details
+        </button>
+      </div>
     </li>
   )
 }
