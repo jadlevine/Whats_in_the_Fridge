@@ -65,10 +65,16 @@ const FoodUpdateForm = (props) => {
           props.setHouseUpdate(true)
           //reset foodTOUpdate
           props.setFoodToUpdate([])
+          // props.setFoodToUpdate([props.foodToUpdate])
         } catch (err) {
           console.log(err)
         }
       }
+      //reset housedetails
+      props.setHouseUpdate(true)
+      //reset foodTOUpdate
+      props.setFoodToUpdate([])
+      // props.setFoodToUpdate([props.foodToUpdate])
     } catch (err) {
       console.log(err)
     }
