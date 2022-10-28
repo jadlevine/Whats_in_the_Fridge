@@ -1,5 +1,5 @@
 const { ObjectId } = require('bson')
-const { FoodModel } = require('../models')
+const { HouseModel, FoodModel } = require('../models')
 
 const getAllFoods = async (req, res) => {
   const foods = await FoodModel.find({})
@@ -13,11 +13,17 @@ const getFood = async (req, res) => {
 
 //check that this still works
 const deleteFood = async (req, res) => {
-  let deleted = await FoodModel.findOneAndDelete({
+  let deletedFood = await FoodModel.findOneAndDelete({
     // _id: ObjectId(`${req.params.foodid}`)
     _id: req.params.foodid
   })
-  res.send(`removed one food document: ${deleted}`)
+  //then, remove any references to the deleted...
+  let updateResponse = await HouseModel.updateOne(
+    { _id: deletedFood.house },
+    { $pull: { [deletedFood.storage]: deletedFood._id } }
+  )
+
+  res.send(deletedFood)
 }
 
 //needs work on req.body
@@ -36,7 +42,7 @@ const updateFood = async (req, res) => {
         new: true
       }
     )
-    res.status(200).json(house)
+    res.status(200).json(food)
   } catch (error) {
     return res.status(500).send(error.message)
   }

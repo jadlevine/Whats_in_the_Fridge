@@ -3,26 +3,23 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const AddNewFoodForm = (props) => {
-  //props = house, setHouse
+  //props = house, setHouse, setHouseUpdate
+
   //house state is not available upon initial load?
+  ///but this works?
   let { houseid } = useParams()
+
+  //maybe useful
+  // setFormState(initialState)
 
   const [newFood, setNewFood] = useState({
     name: '',
-    house: houseid
+    ///houseid is just the string... be careful when you make the axios call to create the new food
+    house: houseid,
+    storage: '',
+    opened: false,
+    notes: []
   })
-
-  // const [newFood, setNewFood] = useState({
-  //   name: '',
-  //   house: '',
-  //   location: '',
-  //   opened: false,
-  //   notes: [],
-  //   //need to go up to house details and be able to dynamically pass owner variable to this. then below should just automatically be whoever's housedetail page you are on
-  //   owner: 'josh',
-  //   //hardcoding the line below to be ANYTHING solves the   message: 'Path `location` is required.', error on the db connection
-  //   location: ''
-  // })
 
   const handleChange = (event) => {
     setNewFood({ ...newFood, [event.target.name]: event.target.value })
@@ -32,46 +29,35 @@ const AddNewFoodForm = (props) => {
     event.preventDefault()
     //make axios call here with newFood
 
-    //add food to db( food collection (with house id))
+    //add newFood to food collection in db (with house:houseid as reference)
     try {
       let response = await axios.post(`http://localhost:3001/foods`, newFood)
 
-      //update the foods array LOCALLY
-      let localFoodsArray
-      if (props.house.foods) {
-        localFoodsArray = [...props.house.foods, response.data._id]
-      } else {
-        localFoodsArray = [response.data._id]
-      }
+      //LOCALLY update the array (holding foodid references) for the selected storage location
+      let foodsInStorage = props.house[newFood.storage]
+      foodsInStorage.push(response.data._id)
 
-      //update the house in db
+      // update the house in db
       try {
         let houseupdate = await axios.put(
           `http://localhost:3001/houses/${props.house._id}`,
-          { foods: localFoodsArray }
+          { [newFood.storage]: foodsInStorage }
         )
 
-        //update the house state
-        props.setHouse(houseupdate.data)
+        // //update the house state
+        // props.setHouse(houseupdate.data)
+        // //is the above NOT necessary, with the below?
+
+        //trigger getHouse to repull the house document from db
+        props.setHouseUpdate(true)
       } catch (err) {
         console.log(err)
       }
-
-      ///HERE...going back to HouseDetails.js
-      ///then https://mongoosejs.com/docs/populate.html#:~:text=so%20far%20we%20haven't%20done%20anything%20much%20different.%20we've%20merely%20created%20a%20person%20and%20a%20story.%20now%20let's%20take%20a%20look%20at%20populating%20our%20story's
-
-      //oldish?
-      // https://github.com/SEI-R-9-19/u2_lesson_react_forms/blob/solution/client/src/components/Form.js#:~:text=setformstate(initialstate)
-      // setFormState(initialState)
-      // props.getFridgeFoods()
-      // props.setFridgeContents(...props.fridgeContents, response.data)
     } catch (err) {
       console.log(err)
     }
   } //end of addFood function
 
-  //return a form that has handleChange, and onSubmit (button)
-  //add more of the house fields later (notes, etc...)
   return (
     <form onSubmit={addFood}>
       <h3>Add a Food!</h3>
@@ -80,18 +66,37 @@ const AddNewFoodForm = (props) => {
         value={newFood.name}
         onChange={handleChange}
         name={'name'}
-        placeholder={'name (required)'}
+        placeholder={'Food Name (required)'}
+        required
       />
-      {/* <input
-        type="text"
-        value={newFood.location}
+      <label>Location drop down label placeholder</label>
+      <select
+        name="storage"
+        value={newFood.storage}
         onChange={handleChange}
-        name={'location'}
-        placeholder={'stoarge location (required)'}
-      /> */}
-      <button>Submit: aka add to fridge</button>
+        required
+      >
+        <option value="" disabled>
+          Storage Location (required)
+        </option>
+        <option value="fridge">Fridge</option>
+        <option value="freezer">Freezer</option>
+        <option value="pantry">Pantry</option>
+        <option value="otherStorage">Other Storage</option>
+      </select>
+      <button>Submit</button>
     </form>
   )
 }
 
 export default AddNewFoodForm
+
+//notes
+///HERE...going back to HouseDetails.js
+///then https://mongoosejs.com/docs/populate.html#:~:text=so%20far%20we%20haven't%20done%20anything%20much%20different.%20we've%20merely%20created%20a%20person%20and%20a%20story.%20now%20let's%20take%20a%20look%20at%20populating%20our%20story's
+
+//oldish?
+// https://github.com/SEI-R-9-19/u2_lesson_react_forms/blob/solution/client/src/components/Form.js#:~:text=setformstate(initialstate)
+// setFormState(initialState)
+// props.getFridgeFoods()
+// props.setFridgeContents(...props.fridgeContents, response.data)

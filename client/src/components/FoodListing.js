@@ -1,11 +1,59 @@
-// import axios from 'axios'
+import axios from 'axios'
 
+//each FoodListing shows name, details/update button (/////DO Something), and delete button (if not protected? or house not protected?)
+
+////maybe checkbox for if opened or not
 const FoodListing = (props) => {
-  //props = food
+  //props = food, house, setHouse, setHouseUpdate
+  let foodid = props.food._id
+
+  const deleteFood = async (event) => {
+    event.preventDefault()
+    console.log('deleteFood')
+
+    //delete food from db
+    try {
+      //this should BOTH delete the food, AND delete the reference to the food in the house
+      const deleted = await axios.delete(
+        `http://localhost:3001/foods/${foodid}`
+      )
+      console.log(deleted)
+
+      // //update the house in db (remove food reference from appropriate storage)
+      // const updatedHouse = await axios.put(
+      //   `http://localhost:3001/houses/${props.house._id}`,
+      //   { [deleted.storage]: props.somethingsomething } ///////you are here...
+      // )
+
+      //trigger rerender
+      props.setHouseUpdate(true) //and then, just don't do the below??
+
+      // //remove deleted from appropriate storage in house state
+      // let currStorage = props.food.storage
+      // let currFoods = props.house[currStorage]
+      // console.log(currFoods)
+      // let updatedFoods = currFoods.filter((foodItem) => {
+      //   return foodItem._id !== deleted.data._id
+      // })
+      // props.setHouse({ ...props.house, [currStorage]: updatedFoods })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const seeDetails = () => {
+    console.log('seeDetails')
+  }
 
   return (
     <li>
-      <div>{props.food}</div>
+      <div>{props.food.name}</div>
+      <button className={foodid} onClick={seeDetails}>
+        Details/Update
+      </button>
+      <button className={foodid} onClick={deleteFood}>
+        Delete
+      </button>
     </li>
   )
 }

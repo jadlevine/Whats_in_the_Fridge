@@ -7,15 +7,16 @@ const Houses = () => {
   //let navigate = useNavigate()
   const [houses, setHouses] = useState([])
 
-  const getHouses = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/houses`)
-      setHouses(response.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  //get all house documents
   useEffect(() => {
+    const getHouses = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/houses`)
+        setHouses(response.data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
     getHouses()
   }, [])
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-//each houselisting shows name of owner, details button (navigate to house details), and delete button (if NOT protected)
+//each HouseListing shows name of owner, details button (navigate to house details), and delete button (if NOT protected)
 
 const HouseListing = (props) => {
   let navigate = useNavigate()
@@ -16,6 +16,8 @@ const HouseListing = (props) => {
 
   const deleteHouse = async (event) => {
     event.preventDefault()
+
+    //delete house from db
     try {
       const deleted = await axios.delete(
         `http://localhost:3001/houses/${houseid}`
